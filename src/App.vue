@@ -1,28 +1,44 @@
 <template>
-  <div v-if="authorized">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <loader v-if='loading'
+          object="#ffffff"
+          color1="#ff2600"
+          color2="#ffffff"
+          size="5"
+          speed="2"
+          bg="#343a40"
+          objectbg="#999793"
+          opacity="80"
+          name="circular"></loader>
+  <div v-if='authorized' class='container-fluid p-0 row'>
+    <div class='col-md-3'>
+      <Sidebar/>
     </div>
-    <router-view/>
+    <div class='col-md-9'>
+      <router-view/>
+    </div>
   </div>
 
-  <div v-else>
+  <main v-else>
     <SigninForm/>
-  </div>
+  </main>
 </template>
 
 <script>
-import SigninForm from '@/components/signin_form.vue';
+import SigninForm from '@/components/SigninForm.vue';
+import Sidebar from '@/components/Sidebar.vue';
 
 export default {
   computed: {
+    loading() {
+      return this.$store.getters.loading;
+    },
     authorized() {
       return this.$store.getters['user/isAuthorized'];
     },
   },
   components: {
     SigninForm,
+    Sidebar,
   },
 };
 </script>
