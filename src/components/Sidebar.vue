@@ -11,25 +11,19 @@
       <li class="nav-item">
         <router-link to="/" class="nav-link text-white" aria-current="page">
           <i class="bi bi-house-fill me-2" ></i>
-          Home
+          Панель управления
         </router-link>
       </li>
       <li class="nav-item">
         <router-link to="/users" class="nav-link text-white">
           <i class="bi bi-people-fill me-2" ></i>
-          Users
+          Пользователи
         </router-link>
       </li>
       <li class="nav-item">
         <router-link to="/places" class="nav-link text-white">
           <i class="bi bi-shop me-2" ></i>
-          Places
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/about" class="nav-link text-white">
-          <i class="bi bi-info-circle-fill me-2" ></i>
-          About
+          Места
         </router-link>
       </li>
     </ul>
