@@ -1,16 +1,15 @@
 <template>
-  <div>
+  <div class="p-2 mt-2">
+    <h2>Список мест</h2>
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Uri</th>
+          <th scope="col">Название</th>
+          <th scope="col">URI</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for='place in places' :key='place.id'>
-          <th scope="row">{{ place.id }}</th>
           <td>
             {{ place.name }}
           </td>

@@ -1,19 +1,18 @@
 <template>
-  <div>
+  <div class="p-2 mt-2">
+    <h2>Список пользователей</h2>
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Username</th>
-          <th scope="col">Full name</th>
+          <th scope="col">Имя пользователя</th>
+          <th scope="col">Полное имя</th>
           <th scope="col">Email</th>
-          <th scope="col">Confirmed?</th>
-          <th scope="col">Admin?</th>
+          <th scope="col">Подтвержден?</th>
+          <th scope="col">Администратор?</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for='user in users' :key='user.id'>
-          <th scope="row">{{ user.id }}</th>
           <td>
             {{ user.username }}
           </td>
