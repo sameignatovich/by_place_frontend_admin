@@ -11,14 +11,16 @@
         <router-view/>
       </div>
     </div>
-    <SigninForm v-else />
+
+    <div v-else>
+      <router-view/>
+    </div>
   </main>
 </template>
 
 <script>
 import Loader from '@/components/Loader.vue';
 import Maintenance from '@/views/Errors/500.vue';
-import SigninForm from '@/components/SigninForm.vue';
 import Sidebar from '@/components/Sidebar.vue';
 
 export default {
@@ -35,7 +37,6 @@ export default {
   },
   components: {
     Loader,
-    SigninForm,
     Sidebar,
     Maintenance,
   },
