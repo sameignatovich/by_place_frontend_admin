@@ -1,7 +1,8 @@
 <template>
   <div class="p-2 mt-2">
     <h2>Список пользователей</h2>
-    <table class="table">
+    <table class="table table-striped table-hover caption-top">
+      <caption>Общее количество: {{ users.length }}</caption>
       <thead>
         <tr>
           <th scope="col">Имя пользователя</th>
