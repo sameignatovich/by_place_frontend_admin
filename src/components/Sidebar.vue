@@ -9,7 +9,7 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <router-link to="/" class="nav-link active" aria-current="page">
+        <router-link to="/" class="nav-link text-white" aria-current="page">
           <i class="bi bi-house-fill me-2" ></i>
           Home
         </router-link>
@@ -59,13 +59,16 @@
 export default {
   computed: {
     user() {
-      return this.$store.getters['user/user'];
+      return this.$store.getters['authorization/user'];
     },
   },
   methods: {
     signout() {
-      this.$store.dispatch('user/signout');
-      this.$router.push('/');
+      this.$store.dispatch('authorization/signout')
+        .then(() => {
+          this.$toast.success('Вы успешно вышли из системы', { position: 'top' });
+          this.$router.push('/');
+        });
     },
   },
 };

@@ -1,6 +1,6 @@
 import api from '@/config/axios';
 
-const userModule = {
+const authorizationModule = {
   namespaced: true,
 
   state() {
@@ -130,4 +130,4 @@ const userModule = {
   },
 };
 
-export default userModule;
+export default authorizationModule;

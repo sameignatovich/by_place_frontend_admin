@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
-import userModule from './user';
+import authorizationModule from './authorization';
+import usersModule from './users';
 
 export default createStore({
   strict: process.env.NODE_ENV !== 'production',
@@ -12,10 +13,13 @@ export default createStore({
       state.loading = payload;
     },
   },
-  actions: {
+  getters: {
     loading: (state) => state.loading,
   },
+  actions: {
+  },
   modules: {
-    user: userModule,
+    authorization: authorizationModule,
+    users: usersModule,
   },
 });

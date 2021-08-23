@@ -48,10 +48,10 @@ export default {
         },
       };
 
-      this.$store.dispatch('user/signin', signinData)
+      this.$store.dispatch('authorization/signin', signinData)
         .then(() => {
-          this.axios.defaults.headers.common.Authorization = `Bearer ${this.$store.getters['user/token']}`;
-
+          this.axios.defaults.headers.common.Authorization = `Bearer ${this.$store.getters['authorization/token']}`;
+          this.$toast.success('Вы успешно вошли в систему', { position: 'top' });
           if (this.$route.query.redirect != null) {
             this.$router.push(this.$route.query.redirect);
           } else {

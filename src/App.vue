@@ -8,7 +8,9 @@
           bg="#343a40"
           objectbg="#999793"
           opacity="80"
-          name="circular"></loader>
+          name="circular">
+  </loader>
+
   <div v-if='authorized' class='container-fluid p-0 row'>
     <div class='col-md-3'>
       <Sidebar/>
@@ -33,7 +35,7 @@ export default {
       return this.$store.getters.loading;
     },
     authorized() {
-      return this.$store.getters['user/isAuthorized'];
+      return this.$store.getters['authorization/isAuthorized'];
     },
   },
   components: {
