@@ -1,6 +1,5 @@
 <template>
-  <loader v-if='loading'
-          object="#ffffff"
+  <loader object="#ffffff"
           color1="#ff2600"
           color2="#ffffff"
           size="5"
@@ -14,10 +13,5 @@
 
 <script>
 export default {
-  computed: {
-    loading() {
-      return this.$store.getters.loading;
-    },
-  },
 };
 </script>

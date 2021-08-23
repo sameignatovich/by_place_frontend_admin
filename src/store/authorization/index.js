@@ -44,7 +44,13 @@ const authorizationModule = {
             resolve(response);
           })
           .catch((error) => {
-            commit('UNSET_TOKEN');
+            const { status } = error.response;
+
+            if (status === 404 || status === 403) {
+              commit('UNSET_TOKEN');
+            }
+
+            commit('SET_MAINTENANCE', true, { root: true });
             commit('SET_LOADING', false, { root: true });
 
             reject(error);
