@@ -21,7 +21,7 @@ createApp(App)
   .use(store)
   .use(router)
   .use(Toaster, {
-    duration: 7000,
+    duration: 5000,
   })
   .use(loader)
   .use(VueAxios, api)
