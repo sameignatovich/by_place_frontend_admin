@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import authorizationModule from './authorization';
 import usersModule from './users';
+import placesModule from './places';
 
 export default createStore({
   strict: process.env.NODE_ENV !== 'production',
@@ -21,5 +22,6 @@ export default createStore({
   modules: {
     authorization: authorizationModule,
     users: usersModule,
+    places: placesModule,
   },
 });
