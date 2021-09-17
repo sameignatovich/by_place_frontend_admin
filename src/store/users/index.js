@@ -12,22 +12,31 @@ const usersModule = {
     SET_USERS(state, users) {
       state.users = users;
     },
+    DELETE_USER(state, userId) {
+      state.users.splice(state.users.findIndex((i) => i.id === userId), 1);
+    },
   },
   actions: {
     fetchUsers({ commit }) {
-      commit('SET_LOADING', true, { root: true });
-
       return new Promise((resolve, reject) => {
         api.get('/users.json')
           .then((response) => {
             commit('SET_USERS', response.data.users);
-            commit('SET_LOADING', false, { root: true });
-
             resolve(response);
           })
           .catch((error) => {
-            commit('SET_LOADING', false, { root: true });
-
+            reject(error);
+          });
+      });
+    },
+    deleteUser({ commit }, userId) {
+      return new Promise((resolve, reject) => {
+        api.delete(`/users/${userId}.json`)
+          .then((response) => {
+            commit('DELETE_USER', userId);
+            resolve(response);
+          })
+          .catch((error) => {
             reject(error);
           });
       });

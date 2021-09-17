@@ -12,22 +12,47 @@ const placesModule = {
     SET_PLACES(state, places) {
       state.places = places;
     },
+    ADD_PLACE(state, place) {
+      state.places.push(place);
+    },
+    DELETE_PLACE(state, placeId) {
+      state.places.splice(state.places.findIndex((i) => i.id === placeId), 1);
+    },
   },
   actions: {
     fetchPlaces({ commit }) {
-      commit('SET_LOADING', true, { root: true });
-
       return new Promise((resolve, reject) => {
         api.get('/places.json')
           .then((response) => {
             commit('SET_PLACES', response.data.places);
-            commit('SET_LOADING', false, { root: true });
 
             resolve(response);
           })
           .catch((error) => {
-            commit('SET_LOADING', false, { root: true });
-
+            reject(error);
+          });
+      });
+    },
+    newPlace({ commit }, placeData) {
+      return new Promise((resolve, reject) => {
+        api.post('/places.json', placeData)
+          .then((response) => {
+            commit('ADD_PLACE', response.data.place);
+            resolve(response);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
+    deletePlace({ commit }, placeId) {
+      return new Promise((resolve, reject) => {
+        api.delete(`/places/${placeId}.json`)
+          .then((response) => {
+            commit('DELETE_PLACE', placeId);
+            resolve(response);
+          })
+          .catch((error) => {
             reject(error);
           });
       });
