@@ -8,19 +8,14 @@ export default createStore({
 
   state: {
     loading: false,
-    maintenance: false,
   },
   mutations: {
     SET_LOADING(state, payload) {
       state.loading = payload;
     },
-    SET_MAINTENANCE(state, payload) {
-      state.maintenance = payload;
-    },
   },
   getters: {
     loading: (state) => state.loading,
-    maintenance: (state) => state.maintenance,
   },
   actions: {
   },

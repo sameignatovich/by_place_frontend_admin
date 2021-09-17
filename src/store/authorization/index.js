@@ -40,19 +40,15 @@ const authorizationModule = {
           .then((response) => {
             commit('SET_USER', response.data.user);
             commit('SET_LOADING', false, { root: true });
-
             resolve(response);
           })
           .catch((error) => {
             const { status } = error.response;
-
             if (status === 404 || status === 403) {
               commit('UNSET_TOKEN');
             }
 
-            commit('SET_MAINTENANCE', true, { root: true });
             commit('SET_LOADING', false, { root: true });
-
             reject(error);
           });
       });
