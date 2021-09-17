@@ -1,26 +1,25 @@
 <template>
   <Loader v-if='loading' />
-  <Maintenance v-if='maintenance' />
 
-  <main v-else>
-    <div v-if='authorized' class="container-fluid p-0 row">
-      <div class='col-md-3'>
-        <Sidebar/>
-      </div>
-      <div class='col-md-9'>
+  <Header v-if='authorized' />
+
+  <div v-if='authorized' class="container-fluid">
+    <div class="row">
+      <Sidebar/>
+      <main class='col-md-9 ms-sm-auto col-lg-10 px-md-4'>
         <router-view/>
-      </div>
+      </main>
     </div>
+  </div>
 
-    <div v-else>
-      <router-view/>
-    </div>
-  </main>
+  <div v-else>
+    <router-view/>
+  </div>
 </template>
 
 <script>
 import Loader from '@/components/Loader.vue';
-import Maintenance from '@/views/Errors/500.vue';
+import Header from '@/components/Header.vue';
 import Sidebar from '@/components/Sidebar.vue';
 
 export default {
@@ -28,17 +27,14 @@ export default {
     loading() {
       return this.$store.getters.loading;
     },
-    maintenance() {
-      return this.$store.getters.maintenance;
-    },
     authorized() {
       return this.$store.getters['authorization/isAuthorized'];
     },
   },
   components: {
     Loader,
+    Header,
     Sidebar,
-    Maintenance,
   },
 };
 </script>
