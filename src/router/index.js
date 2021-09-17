@@ -27,6 +27,14 @@ const routes = [
     },
   },
   {
+    path: '/places/new',
+    name: 'New Place',
+    component: () => import(/* webpackChunkName: "places" */ '../views/Places/New.vue'),
+    meta: {
+      title: 'Создать место',
+    },
+  },
+  {
     path: '/signin',
     name: 'Signin',
     component: () => import(/* webpackChunkName: "signin" */ '../views/Authorization/Signin.vue'),
