@@ -35,44 +35,32 @@
             <i :class="user.admin ? 'bi bi-check-lg' : 'bi bi-x-lg'"></i>
           </td>
           <td>
-            <a  href="#deleteModal"
-                data-bs-toggle="modal"
-                class='link-danger'
-                @click="userForRemove = user" >
+            <button type="button"
+                    class="btn btn-sm btn-link link-danger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteUser"
+                    @click="userForRemove = user">
               <i class="bi bi-trash-fill places-action" ></i>
-            </a>
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <Modal id='deleteModal'>
-    <template v-slot:title>
-      Вы действительно хотите удалить пользователя?
-    </template>
-    <template v-slot:body>
-      Пользователь
-      <b>{{ userForRemove.fullname }}</b>
-      будет удален без возможности восстановления
-    </template>
-    <template v-slot:footer>
-      <button @click="userForRemove = {}"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal">
-        Отменить
-      </button>
-      <button @click="deleteUser(userForRemove.id)"
-              class="btn btn-danger"
-              data-bs-dismiss="modal">
-        Удалить
-      </button>
-    </template>
-  </Modal>
+  <ModalDialogue  title='Вы действительно хотите удалить пользователя?'
+                  body='Следующий пользователь будет удален без возможности восстановления'
+                  :itemName='userForRemove.fullname'
+                  acceptButtonText='Удалить'
+                  acceptButtonClass='btn-danger'
+                  @accept-event="deleteUser(userForRemove.id)"
+                  @cancel-event="userForRemove = {}"
+                  id='deleteUser'>
+  </ModalDialogue>
 </template>
 
 <script>
-import Modal from '@/components/Modal.vue';
+import ModalDialogue from '@/components/ModalDialogue.vue';
 
 export default {
   data() {
@@ -95,7 +83,7 @@ export default {
     this.$store.dispatch('users/fetchUsers');
   },
   components: {
-    Modal,
+    ModalDialogue,
   },
 };
 </script>
