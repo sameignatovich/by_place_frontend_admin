@@ -59,7 +59,7 @@ router.beforeEach((to) => {
   }
 
   const pageTitle = to.meta.title || 'Страница';
-  document.title = `${pageTitle} | BP Admin`;
+  document.title = `${pageTitle} | SP Admin`;
 
   return true;
 });
