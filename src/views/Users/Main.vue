@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 mt-2">
     <h2>Список пользователей</h2>
-    <table class="table table-striped table-hover caption-top">
+    <table class="table table-striped table-hover table-responsive caption-top">
       <caption>Общее количество: {{ users.length }}</caption>
       <thead>
         <tr>
@@ -9,9 +9,9 @@
           <th scope="col">Имя пользователя</th>
           <th scope="col">Полное имя</th>
           <th scope="col">Email</th>
-          <th scope="col">Подтвержден?</th>
-          <th scope="col">Администратор?</th>
-          <th scope="col">Действия</th>
+          <th scope="col">Подтвержден</th>
+          <th scope="col">Администратор</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -29,13 +29,28 @@
             {{ user.email }}
           </td>
           <td>
-            <i :class="user.email_confirmed ? 'bi bi-check-lg' : 'bi bi-x-lg'"></i>
-          </td>
-          <td>
-            <i :class="user.admin ? 'bi bi-check-lg' : 'bi bi-x-lg'"></i>
+            <button type="button"
+                    class="btn btn-sm"
+                    :class="user.email_confirmed ? 'btn-outline-success' : 'btn-outline-warning'"
+                    :disabled="user.email_confirmed">
+              <i  class="bi"
+                  :class="user.email_confirmed ? 'bi-check-lg' : 'bi-x-lg'">
+              </i>
+            </button>
           </td>
           <td>
             <button type="button"
+                    class="btn btn-sm"
+                    :class="user.admin ? 'btn-outline-success' : 'btn-outline-dark'"
+                    :disabled="user.id === currentUserId">
+              <i  class="bi"
+                  :class="user.admin ? 'bi-check-lg' : 'bi-x-lg'">
+              </i>
+            </button>
+          </td>
+          <td>
+            <button v-if="user.id != currentUserId"
+                    type="button"
                     class="btn btn-sm btn-link link-danger"
                     data-bs-toggle="modal"
                     data-bs-target="#deleteUser"
@@ -72,6 +87,9 @@ export default {
     users() {
       return this.$store.getters['users/users'];
     },
+    currentUserId() {
+      return this.$store.getters['authorization/user'].id;
+    },
   },
   methods: {
     deleteUser(userId) {
@@ -89,11 +107,4 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-  .bi-x-lg {
-    color: red;
-  }
-
-  .bi-check-lg {
-    color: green;
-  }
 </style>
